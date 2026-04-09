@@ -1,0 +1,28 @@
+# fly.toml app configuration file generated for my-socks5-proxy on 2026-04-09T20:49:14+01:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'my-socks5-proxy'
+primary_region = 'ord'
+
+[build]
+  image = 'serjs/go-socks5-proxy'
+
+[env]
+  PROXY_PASSWORD = 'yourpassword123'
+  PROXY_PORT = '1080'
+  PROXY_USER = 'proxyuser'
+
+[[services]]
+  protocol = 'tcp'
+  internal_port = 1080
+
+  [[services.ports]]
+    port = 1080
+
+[[vm]]
+  memory = '1gb'
+  cpu_kind = 'shared'
+  cpus = 1
+  memory_mb = 1024
